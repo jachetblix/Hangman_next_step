@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Hangman_next_step</string>
+    <string name="let_s_start_the_game">Let\'s start the game</string>
+    <string name="greeting_to_our_hangman_game">Greeting to our Hangman game</string>
+
+    <string-array name="gamelevels">
+        <item>Choose your difficulty</item>
+        <item>Easy</item>
+        <item>Middle</item>
+        <item>Hard</item>
+    </string-array>
+</resources>
