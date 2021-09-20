@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 
-public class MainActivity extends AppCompatActivity implements  OnClickListener{
+public class MainActivity extends AppCompatActivity{
 
     Button button_2;
     @Override
@@ -16,12 +18,31 @@ public class MainActivity extends AppCompatActivity implements  OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button_2 = findViewById(R.id.button2);
-        button_2.setOnClickListener(this);
     }
-    @Override
-    public void onClick(View v) {
+
+    //Click events
+    public void onClickStart(View view) {
+//        playSoundButton();
+
+        Animation anim = AnimationUtils.loadAnimation(this,R.anim.scale_up);
+        Button btnStartGame = findViewById(R.id.btn_start_game);
+        btnStartGame.startAnimation(anim);
+//        createWordsGame();
+
         Intent intent = new Intent(this, Second_Screen.class);
         startActivity(intent);
+
+
+    }
+    public void onClickScores(View view) {
+        Animation anim = AnimationUtils.loadAnimation(this,R.anim.scale_up);
+        Button btnScores = findViewById(R.id.btn_scores);
+
+        btnScores.startAnimation(anim);
+//        playSoundButton();
+
+
+
     }
 
 }
