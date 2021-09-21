@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button_2 = findViewById(R.id.button2);
+//        button_2 = findViewById(R.id.button2);
     }
 
     //Click events

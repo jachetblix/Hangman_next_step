@@ -13,4 +13,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="button" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
+        <item name="fontFamily">@font/open_sans_extra_bold_italic</item>
+        <item name="android:padding">10dp</item>
+    </style>
 </resources>
