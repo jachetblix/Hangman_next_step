@@ -5,4 +5,5 @@
     <string name="greeting_to_our_hangman_game">שלום ממשחק האיש תלוי</string>
     <string name="btn_start_game">התחל משחק</string>
     <string name="btn_scores">טבלת ניקוד</string>
+    <string name="txt_level">בחר דרגת קושי</string>
 </resources>

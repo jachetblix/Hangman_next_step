@@ -11,4 +11,5 @@
         <item>Middle</item>
         <item>Hard</item>
     </string-array>
+    <string name="txt_level">Choose Game Level</string>
 </resources>

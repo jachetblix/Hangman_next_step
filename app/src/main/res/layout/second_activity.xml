@@ -19,7 +19,7 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose your \ngame level"
+        android:text="@string/txt_level"
         android:textSize="25sp"
         android:onClick="onClickGameLevel"
         style="@style/button"
@@ -48,8 +48,11 @@
         android:gravity="center|bottom"
         android:orientation="vertical" >
     <androidx.appcompat.widget.AppCompatButton
+        android:stateListAnimator="@null"
+
         android:layout_gravity="center_horizontal|center"
         style="@style/button"
+        android:background="@drawable/button_background"
         android:id="@+id/third_activity_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -5,11 +5,14 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1287037037037037" />
         <entry key="app/src/main/res/drawable/button_background.xml" value="0.25555555555555554" />
+        <entry key="app/src/main/res/drawable/button_background2.xml" value="0.19444444444444445" />
+        <entry key="app/src/main/res/drawable/button_letter.xml" value="0.19444444444444445" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15" />
         <entry key="app/src/main/res/layout/game_spinner.xml" value="0.26145833333333335" />
+        <entry key="app/src/main/res/layout/menu_layout.xml" value="0.15555555555555556" />
         <entry key="app/src/main/res/layout/second_activity.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/spinner.xml" value="0.16822916666666668" />
-        <entry key="app/src/main/res/layout/third_activity.xml" value="0.22327898550724637" />
+        <entry key="app/src/main/res/layout/third_activity.xml" value="0.25" />
       </map>
     </option>
   </component>
