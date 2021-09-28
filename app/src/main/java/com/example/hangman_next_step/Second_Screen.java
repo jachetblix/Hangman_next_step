@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -45,7 +46,7 @@ public class Second_Screen extends AppCompatActivity {
 
 
     }
-//
+    //
 //    @Override
 //    public void onClick(View v) {
 ////        startActivity(intent);
@@ -80,6 +81,29 @@ public class Second_Screen extends AppCompatActivity {
 //
 //
 //    }
+    private void startAnimationButton(int idNum) {
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.scale_up);
+        Button btnAlef = findViewById(idNum);
+
+        btnAlef.startAnimation(anim);
+
+
+    }
+    private void playSoundButton() {
+        MediaPlayer mp;
+
+        mp = MediaPlayer.create(this, R.raw.bubble_rise_edited);
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                // TODO Auto-generated method stub
+                mp.reset();
+                mp.release();
+                mp = null;
+            }
+        });
+        mp.start();
+    }
 
     public void onClickGameLevel(View view) {
         AlertDialog.Builder button3 = new AlertDialog.Builder(Second_Screen.this);
@@ -89,7 +113,8 @@ public class Second_Screen extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(Second_Screen.this, android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.gamelevels));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
+        playSoundButton();
+        startAnimationButton(R.id.button3);
         button3.setPositiveButton("Ok", (dialog, which) -> {
             if (!spinner.getSelectedItem().toString().equalsIgnoreCase("Choose your difficulty")) {
                 Toast.makeText(Second_Screen.this,
@@ -107,14 +132,37 @@ public class Second_Screen extends AppCompatActivity {
                     @Override
                     public void onAnimationEnd(Animator animation) {
 //                        txtViewChosen.setVisibility(View.GONE);
-                        imgViewIcon.setVisibility(View.VISIBLE);
-                        AnimationDrawable animDraw = (AnimationDrawable) imgViewIcon.getDrawable();
 
-                        animDraw.start();
                     }
-                    });
+                });
 
                 anim.start();
+
+                imgViewIcon.setVisibility(View.VISIBLE);
+                String chosenOption = spinner.getSelectedItem().toString();
+                Boolean animationMode = true;
+
+
+                if(!spinner.getSelectedItem().toString().equalsIgnoreCase("Choose your difficulty")) {
+                    if (chosenOption.equals("Easy")) {
+                        imgViewIcon.setImageResource(R.drawable.easy_emoji_animation);
+
+                    } else if (chosenOption.equals("Middle")) {
+                        imgViewIcon.setImageResource(R.drawable.medium_emoji_anim);
+                    } else {
+                        imgViewIcon.setImageResource(R.drawable.hard_emoji_anim);
+                    }
+
+
+                }
+                else
+                {   imgViewIcon.setImageResource(R.drawable.question_mark_png);
+                    animationMode = false;
+                }
+                if(animationMode) {
+                    AnimationDrawable animDraw = (AnimationDrawable) imgViewIcon.getDrawable();
+                    animDraw.start();
+                }
 
 
 
@@ -136,6 +184,7 @@ public class Second_Screen extends AppCompatActivity {
     }
 
     public void onClickStartGame(View view) {
+        playSoundButton();
         startActivity(intent);
     }
 
