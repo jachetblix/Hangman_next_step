@@ -2,6 +2,8 @@
     <string name="app_name">Hangman_next_step</string>
     <string name="let_s_start_the_game">Let\'s start the game</string>
     <string name="greeting_to_our_hangman_game">Greeting to our Hangman game</string>
+    <string name="btn_start_game">Start Game</string>
+    <string name="btn_scores">Scores</string>
 
     <string-array name="gamelevels">
         <item>Choose your difficulty</item>
@@ -9,4 +11,5 @@
         <item>Middle</item>
         <item>Hard</item>
     </string-array>
+    <string name="txt_level">Choose Game Level</string>
 </resources>

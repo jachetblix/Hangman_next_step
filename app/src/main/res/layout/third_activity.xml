@@ -1,6 +1,578 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="MissingConstraints"
+    android:background="@color/white"
+
+    >
+
+    <!--HEADER LAYOUT-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@color/colorPrimary"
+        android:layoutDirection="ltr"
+        >
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/open_sans_extra_bold"
+
+                android:gravity="center_vertical"
+                android:text="נקודות"
+
+                android:textColor="@color/colorPrimaryDarker"
+                android:textSize="28sp" />
+            <TextView
+                android:id="@+id/txt_scores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="28sp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/open_sans_extra_bold"
+                android:textColor="@color/white"
+                android:text="0"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_menu"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDarker"
+                android:gravity="center_vertical"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/open_sans_extra_bold_italic"
+                android:text="תפריט"
+                android:onClick="onClickMenu"
+                tools:ignore="RtlCompat" />
+        </LinearLayout>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/layout_game_end"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/winner_animation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/champion_list_anim"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_menu"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="150dp"
+                    android:layout_height="75dp"
+                    style="@style/button"
+                    android:background="@drawable/button_background"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="32sp"
+                    android:text="EXIT"
+                    android:layout_margin="50dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_return"
+                    android:onClick="onClickReturn"
+                    android:layout_width="150dp"
+                    android:layout_height="75dp"
+                    style="@style/button"
+                    android:background="@drawable/button_background2"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:text="RETURN"/>
+            </LinearLayout>
+        </LinearLayout>    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/hangman_img"
+            android:layout_width="256dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="-10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/hang2" />
+        <LinearLayout
+            android:id="@+id/layout_words"
+            android:layout_margin="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/second_word_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
+
+                <!--                <ImageView-->
+                <!--                    android:layout_width="50dp"-->
+                <!--                    android:layout_height="50dp"-->
+                <!--                    android:src="@drawable/letter_blank"/>-->
+                <!--                <ImageView-->
+                <!--                    android:layout_width="50dp"-->
+                <!--                    android:layout_height="50dp"-->
+                <!--                    android:src="@drawable/letter_blank"/>-->
+                <!--                <ImageView-->
+                <!--                    android:layout_width="50dp"-->
+                <!--                    android:layout_height="50dp"-->
+                <!--                    android:src="@drawable/letter_blank"/>-->
+                <!--                <ImageView-->
+                <!--                    android:layout_width="50dp"-->
+                <!--                    android:layout_height="50dp"-->
+                <!--                    android:src="@drawable/letter_blank"/>-->
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/first_word_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layout_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layoutDirection="rtl"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_alef"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_alef"
+                    android:stateListAnimator="@null"
+
+                    android:text="א"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+
+                    android:id="@+id/letter_bet"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_bet"
+                    android:stateListAnimator="@null"
+                    android:text="ב"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_gimel"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_gimel"
+                    android:stateListAnimator="@null"
+                    android:text="ג"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_dalet"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_dalet"
+                    android:stateListAnimator="@null"
+                    android:text="ד"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_hey"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_hey"
+                    android:stateListAnimator="@null"
+                    android:text="ה"
+
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_vav"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_vav"
+                    android:stateListAnimator="@null"
+                    android:text="ו"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:textAlignment="center">
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_z"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_z"
+                    android:stateListAnimator="@null"
+                    android:text="ז"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_het"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_het"
+                    android:stateListAnimator="@null"
+                    android:text="ח"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_tet"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_tet"
+                    android:stateListAnimator="@null"
+                    android:text="ט"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_yod"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_yod"
+                    android:stateListAnimator="@null"
+                    android:text="י"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_kaf"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_kaf"
+                    android:stateListAnimator="@null"
+                    android:text="כ"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_lamed"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_lamed"
+                    android:stateListAnimator="@null"
+                    android:text="ל"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_mem"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_mem"
+                    android:stateListAnimator="@null"
+                    android:text="מ"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_nun"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_nun"
+                    android:stateListAnimator="@null"
+                    android:text="נ"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_samech"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_samech"
+                    android:stateListAnimator="@null"
+                    android:text="ס"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_ain"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_ain"
+                    android:stateListAnimator="@null"
+                    android:text="ע"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_pey"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_pey"
+                    android:stateListAnimator="@null"
+                    android:text="פ"
+
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_zadik"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_zadik"
+                    android:stateListAnimator="@null"
+                    android:text="צ"
+
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_kuf"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_kuf"
+                    android:stateListAnimator="@null"
+                    android:text="ק"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_resh"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_resh"
+                    android:stateListAnimator="@null"
+                    android:text="ר"
+
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_shin"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_shin"
+                    android:stateListAnimator="@null"
+                    android:text="ש"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/letter_taf"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_letter"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:onClick="onClickLetter_taf"
+                    android:stateListAnimator="@null"
+                    android:text="ת"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
