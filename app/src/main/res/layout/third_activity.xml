@@ -75,7 +75,18 @@
         </LinearLayout>
 
     </RelativeLayout>
-
+    <LinearLayout
+        android:id="@+id/layout_game_end"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/winner_animation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/champion_list_anim"/>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/layout_menu"
         android:visibility="gone"

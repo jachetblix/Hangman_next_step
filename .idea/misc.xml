@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/button_background2.xml" value="0.19444444444444445" />
         <entry key="app/src/main/res/drawable/button_letter.xml" value="0.19444444444444445" />
         <entry key="app/src/main/res/drawable/button_letter_dis.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/button_letter_wrong.xml" value="0.24256410256410257" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15" />
         <entry key="app/src/main/res/layout/game_spinner.xml" value="0.26145833333333335" />
         <entry key="app/src/main/res/layout/menu_layout.xml" value="0.15555555555555556" />

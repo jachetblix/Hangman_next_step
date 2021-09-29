@@ -1,5 +1,6 @@
 package com.example.hangman_next_step;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -11,18 +12,25 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Random;
+
 public class Third_Screen extends AppCompatActivity {
     private LinearLayout layoutMenu,layoutGame;
     private Button btnMenu;
     private boolean wordAdded,secondWordAdded;
     private String str;
     private int foundLetters;
+    private int numGuesses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.third_activity);
-        str = "אנדרויד";
+        String[] s = {"שלום", "כוכבה", "זוארץ", "ארטישוק","זנב","חולצה","בננה","טילון","קממבר","יגוסלביה","ספרד"};
+
+        Random ran = new Random();
+        str = s[ran.nextInt(s.length)];
+
 
         //OBJECTS INITIALIZATION
         layoutMenu = findViewById(R.id.layout_menu);
@@ -34,6 +42,8 @@ public class Third_Screen extends AppCompatActivity {
 
         //Initialize the discvoered letters counter.
         foundLetters  = 0;
+
+        numGuesses = 0;
     }
     //===================
     //CLICK EVENTS(NON-LETTERS)
@@ -65,14 +75,29 @@ public class Third_Screen extends AppCompatActivity {
         //Lose
         if(state==0)
         {
+            Animation anim;
+            LinearLayout layout = findViewById(R.id.layout_game_end);
+            layout.setVisibility(View.VISIBLE);
 
+            ImageView img = findViewById(R.id.winner_animation);
+            img.setImageResource(R.drawable.loser_list_anim);
+            AnimationDrawable draw = (AnimationDrawable) img.getDrawable();
+            playSoundLoser();
+            draw.start();
         }
         else
         {
             //Won
             playSoundWinner();
 
+            Animation anim;
+            LinearLayout layout = findViewById(R.id.layout_game_end);
+            layout.setVisibility(View.VISIBLE);
 
+           ImageView img = findViewById(R.id.winner_animation);
+           AnimationDrawable draw = (AnimationDrawable) img.getDrawable();
+
+           draw.start();
 
         }
     }
@@ -99,7 +124,8 @@ public class Third_Screen extends AppCompatActivity {
             else if(len_word==7)
                 size=120;
             else
-                size=150;
+                size=100;
+
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size,size);
 
@@ -131,6 +157,8 @@ public class Third_Screen extends AppCompatActivity {
                 break;
             case 'ב':
                 imgView.setBackgroundResource(R.drawable.bet);
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth()-20,imgView.getHeight()-20));
+
                 break;
             case 'ג':
                 imgView.setBackgroundResource(R.drawable.gimel);
@@ -143,9 +171,79 @@ public class Third_Screen extends AppCompatActivity {
                 break;
             case 'ו':
                 imgView.setBackgroundResource(R.drawable.vav);
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth(),imgView.getHeight()-20));
+
                 break;
             case 'ז':
                 imgView.setBackgroundResource(R.drawable.zi);
+                break;
+            case 'ח':
+                imgView.setBackgroundResource(R.drawable.het);
+                break;
+            case 'ט':
+                imgView.setBackgroundResource(R.drawable.tet);
+                break;
+            case 'י':
+                imgView.setBackgroundResource(R.drawable.yud);
+                break;
+            case 'כ':
+                imgView.setBackgroundResource(R.drawable.kaf);
+                break;
+            case 'ל':
+                imgView.setBackgroundResource(R.drawable.lamed);
+                break;
+            case 'מ':
+                imgView.setBackgroundResource(R.drawable.mem);
+                break;
+            case 'נ':
+                imgView.setBackgroundResource(R.drawable.nun);
+                break;
+            case 'ס':
+                imgView.setBackgroundResource(R.drawable.samech);
+                break;
+            case 'ע':
+                imgView.setBackgroundResource(R.drawable.ain);
+                break;
+            case 'פ':
+                imgView.setBackgroundResource(R.drawable.pey);
+                break;
+            case 'צ':
+                imgView.setBackgroundResource(R.drawable.zadik);
+                break;
+            case 'ק':
+                imgView.setBackgroundResource(R.drawable.kuf);
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth(),imgView.getHeight()+10));
+
+                break;
+            case 'ר':
+                imgView.setBackgroundResource(R.drawable.resh);
+                break;
+            case 'ש':
+                imgView.setBackgroundResource(R.drawable.shin);
+                break;
+            case 'ת':
+                imgView.setBackgroundResource(R.drawable.taf);
+                break;
+            case 'ך':
+                imgView.setBackgroundResource(R.drawable.final_kaf);
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth(),imgView.getHeight()+10));
+
+                break;
+            case 'ם':
+                imgView.setBackgroundResource(R.drawable.final_m);
+
+                break;
+            case 'ן':
+                imgView.setBackgroundResource(R.drawable.final_nun);
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth(),imgView.getHeight()+10));
+                break;
+            case 'ף':
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth(),imgView.getHeight()+10));
+                imgView.setBackgroundResource(R.drawable.final_pey);
+                break;
+            case 'ץ':
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth(),imgView.getHeight()+10));
+                imgView.setBackgroundResource(R.drawable.final_zadik);
                 break;
         }
     }
@@ -233,7 +331,39 @@ public class Third_Screen extends AppCompatActivity {
         mp.start();
     }
 
+    private void playSoundWrong()
+    {
+        MediaPlayer mp;
 
+        mp = MediaPlayer.create(this, R.raw.buzzer_game);
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                // TODO Auto-generated method stub
+                mp.reset();
+                mp.release();
+                mp = null;
+            }
+        });
+        mp.start();
+    }
+
+    private void playSoundLoser()
+    {
+        MediaPlayer mp;
+
+        mp = MediaPlayer.create(this, R.raw.trumpet_sad);
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                // TODO Auto-generated method stub
+                mp.reset();
+                mp.release();
+                mp = null;
+            }
+        });
+        mp.start();
+    }
     private void playSoundButtonReturn() {
         MediaPlayer mp;
 
@@ -267,12 +397,13 @@ public class Third_Screen extends AppCompatActivity {
 
     public void onClickLetter_alef(View view) {
         startAnimationButton(R.id.letter_alef);
-        playSoundButton();
         int found = checkLetter('א');
 
         if(found>0)
         {
             Button btn = findViewById(R.id.letter_alef);
+            playSoundButton();
+
             btn.setBackgroundResource(R.drawable.button_letter_dis);
             btn.setVisibility(View.INVISIBLE);
 
@@ -285,20 +416,37 @@ public class Third_Screen extends AppCompatActivity {
         else
         {
             //WRONG GUESS
+
+            Button btn = findViewById(R.id.letter_alef);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+
+
         }
 
     }
 
     public void onClickLetter_bet(View view) {
         startAnimationButton(R.id.letter_bet);
-        playSoundButton();
         int found = checkLetter('ב');
 
 
         if(found>0)
         {
+            playSoundButton();
+
             Button btn = findViewById(R.id.letter_bet);
             btn.setBackgroundResource(R.drawable.button_letter_dis);
+
             btn.setVisibility(View.INVISIBLE);
 
             //Adds number of letters that were found
@@ -306,10 +454,26 @@ public class Third_Screen extends AppCompatActivity {
 
             if(foundLetters==str.length())
                 endGame(1);//Won the game!
+
+
         }
         else
         {
             //WRONG GUESS
+
+            Button btn = findViewById(R.id.letter_bet);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+
+            playSoundWrong();
+
+
         }
 
 
@@ -317,12 +481,12 @@ public class Third_Screen extends AppCompatActivity {
 
     public void onClickLetter_gimel(View view) {
         startAnimationButton(R.id.letter_gimel);
-        playSoundButton();
 
         int found = checkLetter('ג');
 
         if(found>0)
         {
+            playSoundButton();
             Button btn = findViewById(R.id.letter_gimel);
             btn.setBackgroundResource(R.drawable.button_letter_dis);
             btn.setVisibility(View.INVISIBLE);
@@ -336,121 +500,874 @@ public class Third_Screen extends AppCompatActivity {
         else
         {
             //WRONG GUESS
+
+            Button btn = findViewById(R.id.letter_gimel);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+
+            playSoundWrong();
+
+
         }
 
     }
 
     public void onClickLetter_dalet(View view) {
         startAnimationButton(R.id.letter_dalet);
-        playSoundButton();
+        int found = checkLetter('ד');
 
+        if(found>0)
+        {
+            playSoundButton();
+
+            Button btn = findViewById(R.id.letter_dalet);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+
+            Button btn = findViewById(R.id.letter_dalet);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+
+
+        }
     }
 
     public void onClickLetter_hey(View view) {
         startAnimationButton(R.id.letter_hey);
-        playSoundButton();
+
+        int found = checkLetter('ה');
+
+        if(found>0)
+        {
+            playSoundButton();
+
+            Button btn = findViewById(R.id.letter_hey);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+
+            Button btn = findViewById(R.id.letter_hey);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+
+        }
 
     }
 
     public void onClickLetter_vav(View view) {
         startAnimationButton(R.id.letter_vav);
-        playSoundButton();
+
+        int found = checkLetter('ו');
+
+        if(found>0)
+        {
+            playSoundButton();
+            Button btn = findViewById(R.id.letter_vav);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+
+            Button btn = findViewById(R.id.letter_vav);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+        }
 
     }
 
     public void onClickLetter_z(View view) {
         startAnimationButton(R.id.letter_z);
-        playSoundButton();
+        int found = checkLetter('ז');
+
+        if(found>0)
+        {
+            playSoundButton();
+
+
+            Button btn = findViewById(R.id.letter_z);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_z);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+        }
 
     }
 
     public void onClickLetter_het(View view) {
         startAnimationButton(R.id.letter_het);
-        playSoundButton();
+        int found = checkLetter('ח');
+
+        if(found>0)
+        {
+            playSoundButton();
+
+
+            Button btn = findViewById(R.id.letter_het);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_het);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+
+        }
 
     }
 
     public void onClickLetter_tet(View view) {
         startAnimationButton(R.id.letter_tet);
-        playSoundButton();
+
+        int found = checkLetter('ט');
+
+        if(found>0)
+        {
+            playSoundButton();
+
+
+            Button btn = findViewById(R.id.letter_tet);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_tet);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+
+        }
 
     }
 
     public void onClickLetter_yod(View view) {
         startAnimationButton(R.id.letter_yod);
-        playSoundButton();
+
+        int found = checkLetter('י');
+
+        if(found>0)
+        {
+            playSoundButton();
+
+
+            Button btn = findViewById(R.id.letter_yod);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_yod);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+        }
 
     }
 
     public void onClickLetter_kaf(View view) {
         startAnimationButton(R.id.letter_kaf);
-        playSoundButton();
+
+        Boolean  buttonPlayed =false;
+
+        //Regular 'כ'
+        int found = checkLetter('כ');
+        if(found>0)
+        {
+
+            playSoundButton();
+            buttonPlayed = true;
+
+            Button btn = findViewById(R.id.letter_kaf);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+
+
+        //Final 'כ'
+        int foundFinal = checkLetter('ך');
+        if(found>0)
+        {
+            if(!buttonPlayed)
+            {
+                playSoundButton();
+
+            }
+            Button btn = findViewById(R.id.letter_kaf);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=foundFinal;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else if(found==0)
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_kaf);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+        }
+
 
     }
 
     public void onClickLetter_lamed(View view) {
         startAnimationButton(R.id.letter_lamed);
-        playSoundButton();
+
+        int found = checkLetter('ל');
+
+        if(found>0)
+        {
+            playSoundButton();
+
+            Button btn = findViewById(R.id.letter_lamed);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_lamed);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+        }
+
 
     }
 
     public void onClickLetter_mem(View view) {
         startAnimationButton(R.id.letter_mem);
-        playSoundButton();
+        //todo: deal with final letter.
+        int found = checkLetter('מ');
+        Boolean  buttonPlayed = false;
+        if(found>0)
+        {
+            playSoundButton();
+            buttonPlayed= true;
 
+
+
+
+            Button btn = findViewById(R.id.letter_mem);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+
+
+        int foundFinal = checkLetter('ם');
+        if(foundFinal>0)
+        {
+            if(!buttonPlayed)
+            {
+                playSoundButton();
+            }
+
+            Button btn = findViewById(R.id.letter_mem);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=foundFinal;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else if(found==0)
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_mem);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+        }
     }
 
     public void onClickLetter_nun(View view) {
         startAnimationButton(R.id.letter_nun);
-        playSoundButton();
+
+        int found = checkLetter('נ');
+        Boolean buttonPlayed = false;
+        if(found>0)
+        {
+            playSoundButton();
+            buttonPlayed = true;
+            Button btn = findViewById(R.id.letter_nun);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+
+        int foundFinal = checkLetter('ן');
+        if(foundFinal>0)
+        {
+            if(!buttonPlayed)
+            {
+                playSoundButton();
+            }
+            Button btn = findViewById(R.id.letter_nun);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else if(found==0)
+        {
+            //WRONG GUESS
+
+            Button btn = findViewById(R.id.letter_nun);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+        }
+
+
+        //todo: deal with final letter.
+
 
     }
 
     public void onClickLetter_samech(View view) {
         startAnimationButton(R.id.letter_samech);
-        playSoundButton();
+
+        int found = checkLetter('ס');
+
+        if(found>0)
+        {
+            playSoundButton();
+
+            Button btn = findViewById(R.id.letter_samech);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_samech);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+        }
 
     }
 
     public void onClickLetter_ain(View view) {
         startAnimationButton(R.id.letter_ain);
-        playSoundButton();
+
+        int found = checkLetter('ע');
+
+        if(found>0)
+        {
+            playSoundButton();
+
+            Button btn = findViewById(R.id.letter_ain);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_ain);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+        }
 
     }
 
     public void onClickLetter_pey(View view) {
         startAnimationButton(R.id.letter_pey);
-        playSoundButton();
+        int found = checkLetter('פ');
+        Boolean buttonPlayed = false;
+        if(found>0)
+        {
+            playSoundButton();
+            buttonPlayed = true;
+
+            Button btn = findViewById(R.id.letter_pey);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+
+        int foundFinal = checkLetter('ף');
+        if(foundFinal>0)
+        {
+            if(!buttonPlayed)
+            {
+                playSoundButton();
+            }
+            Button btn = findViewById(R.id.letter_pey);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=foundFinal;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else if(found==0)
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_pey);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+        }
+
+        //todo: deal with final letter.
+
 
     }
 
     public void onClickLetter_zadik(View view) {
         startAnimationButton(R.id.letter_zadik);
-        playSoundButton();
+
+        //todo: deal with final letter.
+        int found = checkLetter('צ');
+        Boolean  buttonPlayed  = false;
+        if(found>0)
+        {
+            //Make sure activation of sound doesnt happening again
+            playSoundButton();
+            buttonPlayed  = true;
+
+
+            Button btn = findViewById(R.id.letter_zadik);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+
+        int foundFinal = checkLetter('ץ');
+        if(foundFinal>0)
+        {
+            if(!buttonPlayed)
+            {
+                playSoundButton();
+
+            }
+            Button btn = findViewById(R.id.letter_zadik);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=foundFinal;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else if(found==0)
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_zadik);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+
+            playSoundWrong();
+
+        }
+
+
 
     }
 
     public void onClickLetter_kuf(View view) {
         startAnimationButton(R.id.letter_kuf);
-        playSoundButton();
+        int found = checkLetter('ק');
+
+        if(found>0)
+        {
+            playSoundButton();
+
+
+            Button btn = findViewById(R.id.letter_kuf);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_kuf);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+
+            playSoundWrong();
+
+        }
 
     }
 
     public void onClickLetter_resh(View view) {
         startAnimationButton(R.id.letter_resh);
-        playSoundButton();
+
+        int found = checkLetter('ר');
+
+        if(found>0)
+        {
+            playSoundButton();
+
+            Button btn = findViewById(R.id.letter_resh);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_resh);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+        }
 
     }
 
     public void onClickLetter_shin(View view) {
         startAnimationButton(R.id.letter_shin);
-        playSoundButton();
+
+        int found = checkLetter('ש');
+
+        if(found>0)
+        {
+            playSoundButton();
+
+            Button btn = findViewById(R.id.letter_shin);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_shin);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+        }
     }
 
     public void onClickLetter_taf(View view) {
 
         startAnimationButton(R.id.letter_taf);
-        playSoundButton();
+
+        int found = checkLetter('ת');
+
+        if(found>0)
+        {
+            playSoundButton();
+
+            Button btn = findViewById(R.id.letter_taf);
+            btn.setBackgroundResource(R.drawable.button_letter_dis);
+            btn.setVisibility(View.INVISIBLE);
+
+            //Adds number of letters that were found
+            foundLetters+=found;
+
+            if(foundLetters==str.length())
+                endGame(1);//Won the game!
+        }
+        else
+        {
+            //WRONG GUESS
+            Button btn = findViewById(R.id.letter_taf);
+            btn.setBackgroundResource(R.drawable.button_letter_wrong);
+            btn.setClickable(false);
+
+            numGuesses+=1;
+
+            if(numGuesses>4)
+            {
+                endGame(0);
+            }
+            playSoundWrong();
+
+        }
     }
 
 
