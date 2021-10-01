@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,15 +23,19 @@ public class Third_Screen extends AppCompatActivity {
     private int foundLetters;
     private int numGuesses;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.third_activity);
-        String[] s = {"שלום", "כוכבה", "זוארץ", "ארטישוק","זנב","חולצה","בננה","טילון","קממבר","יגוסלביה","ספרד"};
-
+        String[] s = {"שלום", "כוכבה", "זוארץ", "ארטישוק","חתול","חולצה","בננה","טילון","קממבר","יגוסלביה","ספרד"};
+        String[] categories = {"ברכה", "שמות", "שמות", "ירקות","חיות","דוממים","פירות","מאכלים","מאכלים","ערי בירה","ערי בירה"};
         Random ran = new Random();
-        str = s[ran.nextInt(s.length)];
 
+        int num = ran.nextInt(s.length);
+//        int num = 7;
+        str = s[num];
+        String strCategory = categories[num];
 
         //OBJECTS INITIALIZATION
         layoutMenu = findViewById(R.id.layout_menu);
@@ -40,10 +45,65 @@ public class Third_Screen extends AppCompatActivity {
         btnMenu = findViewById(R.id.btn_menu);
         createWordsGame();
 
+
+        //--- Initial animation setup
+        startAnimationSwinging();
+
         //Initialize the discvoered letters counter.
         foundLetters  = 0;
-
         numGuesses = 0;
+
+        //--- Initialize TextView
+        TextView txtView = findViewById(R.id.txt_category);
+        txtView.setText(strCategory);
+    }
+    public static void wait(int ms)
+    {
+        try
+        {
+
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    }
+    private void wrongGuess()
+    {
+
+        ImageView img = findViewById(R.id.hangman_img);
+        switch(numGuesses)
+        {
+            case 0:
+                img.setImageResource(R.drawable.hang2);
+                playSoundWrong();
+                break;
+            case 1:
+                img.setImageResource(R.drawable.hang3);
+                playSoundWrong();
+                break;
+            case 2:
+                img.setImageResource(R.drawable.hang4);
+                playSoundWrong();
+                break;
+            case 3:
+                img.setImageResource(R.drawable.hang7);
+                playSoundWrong();
+                break;
+            case 4:
+                img.setImageResource(R.drawable.hang8);
+                playSoundWrong();
+                break;
+            case 5:
+                endGame(0);
+                break;
+
+        }
+
+        numGuesses+=1;
+
+
     }
     //===================
     //CLICK EVENTS(NON-LETTERS)
@@ -87,6 +147,7 @@ public class Third_Screen extends AppCompatActivity {
         }
         else
         {
+            wait(200);
             //Won
             playSoundWinner();
 
@@ -96,7 +157,6 @@ public class Third_Screen extends AppCompatActivity {
 
            ImageView img = findViewById(R.id.winner_animation);
            AnimationDrawable draw = (AnimationDrawable) img.getDrawable();
-
            draw.start();
 
         }
@@ -280,7 +340,14 @@ public class Third_Screen extends AppCompatActivity {
     }
 
 
-    //Animations
+    //=== ANIMATIONS SECTION ===//
+    private void startAnimationSwinging()
+    {
+        ImageView img = findViewById(R.id.hangman_img);
+        Animation anim = AnimationUtils.loadAnimation(this,R.anim.swinging);
+
+        img.startAnimation(anim);
+    }
     private void startAnimationWinner()
     {
 
@@ -421,13 +488,9 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
 
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
+            wrongGuess();
+
 
 
 
@@ -464,15 +527,9 @@ public class Third_Screen extends AppCompatActivity {
             Button btn = findViewById(R.id.letter_bet);
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
-            numGuesses+=1;
 
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
 
-            playSoundWrong();
-
+            wrongGuess();
 
         }
 
@@ -505,14 +562,8 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
+            wrongGuess();
 
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-
-            playSoundWrong();
 
 
         }
@@ -545,13 +596,8 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
+            wrongGuess();
 
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
 
 
 
@@ -586,13 +632,8 @@ public class Third_Screen extends AppCompatActivity {
 
             btn.setClickable(false);
 
-            numGuesses+=1;
+            wrongGuess();
 
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
 
 
         }
@@ -625,13 +666,7 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
-
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
+            wrongGuess();
 
         }
 
@@ -663,13 +698,7 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
-
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
+            wrongGuess();
 
         }
 
@@ -702,13 +731,8 @@ public class Third_Screen extends AppCompatActivity {
             btn.setClickable(false);
 
 
-            numGuesses+=1;
+            wrongGuess();
 
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
 
 
         }
@@ -741,14 +765,7 @@ public class Third_Screen extends AppCompatActivity {
             Button btn = findViewById(R.id.letter_tet);
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
-
-            numGuesses+=1;
-
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
+            wrongGuess();
 
 
         }
@@ -782,13 +799,7 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
-
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
+            wrongGuess();
 
         }
 
@@ -845,13 +856,8 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
+            wrongGuess();
 
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
 
         }
 
@@ -884,13 +890,7 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
-
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
+            wrongGuess();
 
         }
 
@@ -947,13 +947,8 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
+            wrongGuess();
 
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
 
         }
     }
@@ -979,6 +974,7 @@ public class Third_Screen extends AppCompatActivity {
         }
 
         int foundFinal = checkLetter('ן');
+
         if(foundFinal>0)
         {
             if(!buttonPlayed)
@@ -990,7 +986,7 @@ public class Third_Screen extends AppCompatActivity {
             btn.setVisibility(View.INVISIBLE);
 
             //Adds number of letters that were found
-            foundLetters+=found;
+            foundLetters+=foundFinal;
 
             if(foundLetters==str.length())
                 endGame(1);//Won the game!
@@ -1002,14 +998,8 @@ public class Third_Screen extends AppCompatActivity {
             Button btn = findViewById(R.id.letter_nun);
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
+            wrongGuess();
 
-            numGuesses+=1;
-
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
 
         }
 
@@ -1045,13 +1035,7 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
-
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
+            wrongGuess();
 
         }
 
@@ -1083,13 +1067,8 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
+            wrongGuess();
 
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
 
         }
 
@@ -1139,13 +1118,8 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
+            wrongGuess();
 
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
 
         }
 
@@ -1203,14 +1177,7 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
-
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-
-            playSoundWrong();
+            wrongGuess();
 
         }
 
@@ -1244,14 +1211,8 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
+            wrongGuess();
 
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-
-            playSoundWrong();
 
         }
 
@@ -1283,13 +1244,7 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
-
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
+            wrongGuess();
 
         }
 
@@ -1321,13 +1276,8 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
+            wrongGuess();
 
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
 
         }
     }
@@ -1359,13 +1309,7 @@ public class Third_Screen extends AppCompatActivity {
             btn.setBackgroundResource(R.drawable.button_letter_wrong);
             btn.setClickable(false);
 
-            numGuesses+=1;
-
-            if(numGuesses>4)
-            {
-                endGame(0);
-            }
-            playSoundWrong();
+            wrongGuess();
 
         }
     }

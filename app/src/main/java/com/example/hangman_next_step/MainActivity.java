@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 public class MainActivity extends AppCompatActivity{
 
     Button button_2;
+    private Intent intentRecord;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity{
         Button btnAlef = findViewById(idNum);
 
         btnAlef.startAnimation(anim);
+
 
 
     }
@@ -70,6 +72,10 @@ public class MainActivity extends AppCompatActivity{
 
         btnScores.startAnimation(anim);
 //        playSoundButton();
+
+        Intent intent = new Intent(this, Record_Screen.class);
+        startActivity(intent);
+
 
 
 

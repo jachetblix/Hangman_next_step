@@ -9,12 +9,17 @@
         <entry key="app/src/main/res/drawable/button_letter.xml" value="0.19444444444444445" />
         <entry key="app/src/main/res/drawable/button_letter_dis.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/button_letter_wrong.xml" value="0.24256410256410257" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/game_spinner.xml" value="0.26145833333333335" />
+        <entry key="app/src/main/res/drawable/input_text.xml" value="0.14947916666666666" />
+        <entry key="app/src/main/res/drawable/table_cell.xml" value="0.14947916666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2329359723592917" />
+        <entry key="app/src/main/res/layout/details_layout.xml" value="0.2497628367035058" />
+        <entry key="app/src/main/res/layout/ending_layout.xml" value="0.13333333333333333" />
+        <entry key="app/src/main/res/layout/game_spinner.xml" value="0.24751725807114638" />
         <entry key="app/src/main/res/layout/menu_layout.xml" value="0.15555555555555556" />
+        <entry key="app/src/main/res/layout/record_activity.xml" value="0.20455437582956024" />
         <entry key="app/src/main/res/layout/second_activity.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/spinner.xml" value="0.16822916666666668" />
-        <entry key="app/src/main/res/layout/third_activity.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/third_activity.xml" value="0.22" />
       </map>
     </option>
   </component>
