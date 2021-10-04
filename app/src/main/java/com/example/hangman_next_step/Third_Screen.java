@@ -31,14 +31,7 @@ public class Third_Screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.third_activity);
-        String[] s = {"שלום רב", "כוכבה", "זוארץ", "ארטישוק","חתול","חולצה","בננה","טילון","קממבר","יגוסלביה","ספרד"};
-        String[] categories = {"ברכה", "שמות", "שמות", "ירקות","חיות","דוממים","פירות","מאכלים","מאכלים","ערי בירה","מדינות"};
-        Random ran = new Random();
 
-        int num = ran.nextInt(s.length);
-//        int num = 0;
-        str = s[num];
-        String strCategory = categories[num];
 
 
         //OBJECTS INITIALIZATION

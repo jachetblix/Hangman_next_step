@@ -8,7 +8,7 @@
     <string-array name="gamelevels">
         <item>Choose your difficulty</item>
         <item>Easy</item>
-        <item>Middle</item>
+        <item>Medium</item>
         <item>Hard</item>
     </string-array>
     <string name="txt_level">Choose Game Level</string>
