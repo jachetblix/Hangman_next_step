@@ -93,14 +93,11 @@ public class Second_Screen extends AppCompatActivity {
         MediaPlayer mp;
 
         mp = MediaPlayer.create(this, R.raw.bubble_rise_edited);
-        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                // TODO Auto-generated method stub
-                mp.reset();
-                mp.release();
-                mp = null;
-            }
+        mp.setOnCompletionListener(mp1 -> {
+            // TODO Auto-generated method stub
+            mp1.reset();
+            mp1.release();
+            mp1 = null;
         });
         mp.start();
     }
@@ -110,22 +107,22 @@ public class Second_Screen extends AppCompatActivity {
         View mView = getLayoutInflater().inflate(R.layout.game_spinner,null);
         button3.setTitle("Choose you game level");
         spinner = mView.findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Second_Screen.this, android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.gamelevels));
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(Second_Screen.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.gamelevels));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         playSoundButton();
         startAnimationButton(R.id.button3);
-        button3.setPositiveButton("Ok", (dialog, which) -> {
+        AlertDialog.Builder builder = button3.setPositiveButton("Ok", (dialog, which) -> {
             if (!spinner.getSelectedItem().toString().equalsIgnoreCase("Choose your difficulty")) {
                 Toast.makeText(Second_Screen.this,
-                        spinner.getSelectedItem().toString(),Toast.LENGTH_SHORT)
+                        spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT)
                         .show();
                 dialog.dismiss();
 
 
                 txtViewChosen.setText(spinner.getSelectedItem().toString());
                 //Animation setup
-                Animation anim = AnimationUtils.loadAnimation(this,R.anim.bounce);
+                Animation anim = AnimationUtils.loadAnimation(this, R.anim.bounce);
 //                anim.setDuration(100);
 
                 txtViewChosen.animate().setListener(new AnimatorListenerAdapter() {
@@ -143,39 +140,30 @@ public class Second_Screen extends AppCompatActivity {
                 Boolean animationMode = true;
 
 
-                if(!spinner.getSelectedItem().toString().equalsIgnoreCase("Choose your difficulty")) {
+                if (!spinner.getSelectedItem().toString().equalsIgnoreCase("Choose your difficulty")) {
                     if (chosenOption.equals("Easy")) {
                         imgViewIcon.setImageResource(R.drawable.easy_emoji_animation);
 
-                    } else if (chosenOption.equals("Middle")) {
+                    } else if (chosenOption.equals("Medium")) {
                         imgViewIcon.setImageResource(R.drawable.medium_emoji_anim);
                     } else {
                         imgViewIcon.setImageResource(R.drawable.hard_emoji_anim);
                     }
 
 
-                }
-                else
-                {   imgViewIcon.setImageResource(R.drawable.question_mark_png);
+                } else {
+                    imgViewIcon.setImageResource(R.drawable.question_mark_png);
                     animationMode = false;
                 }
-                if(animationMode) {
+                if (animationMode) {
                     AnimationDrawable animDraw = (AnimationDrawable) imgViewIcon.getDrawable();
                     animDraw.start();
                 }
 
 
-
-
-
             }
         });
-        button3.setNegativeButton("dismiss", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+        button3.setNegativeButton("dismiss", (dialog, which) -> dialog.dismiss());
         button3.setView(mView);
         AlertDialog dialog = button3.create();
         dialog.show();
@@ -185,6 +173,7 @@ public class Second_Screen extends AppCompatActivity {
 
     public void onClickStartGame(View view) {
         playSoundButton();
+        intent.putExtra("level", spinner.getSelectedItem().toString());
         startActivity(intent);
     }
 

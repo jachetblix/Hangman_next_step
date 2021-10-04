@@ -1,5 +1,6 @@
 package com.example.hangman_next_step;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -26,10 +27,31 @@ public class Third_Screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.third_activity);
-        String[] s = {"שלום", "כוכבה", "זוארץ", "ארטישוק","זנב","חולצה","בננה","טילון","קממבר","יגוסלביה","ספרד"};
+        Intent intent = getIntent();
+        String level = intent.getStringExtra("level");
+        if (level.equals("Easy")){
+            String[] easy = {"שלום"};
+            Random ran = new Random();
+            str = easy[ran.nextInt(easy.length)];
+            System.out.println(str);
 
-        Random ran = new Random();
-        str = s[ran.nextInt(s.length)];
+        }
+        if (level.equals("Medium"))
+        {
+            String[] medium = {"ספרד"};
+            Random ran = new Random();
+            str = medium[ran.nextInt(medium.length)];
+            System.out.println(str);
+
+        }
+        if(level.equals("Hard"))
+        {
+            String[] hard = {"בננה"};
+            Random ran = new Random();
+            str = hard[ran.nextInt(hard.length)];
+            System.out.println(str);
+
+        }
 
 
         //OBJECTS INITIALIZATION
