@@ -1,5 +1,6 @@
 package com.example.hangman_next_step;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -22,20 +23,23 @@ public class Third_Screen extends AppCompatActivity {
     private String str;
     private int foundLetters;
     private int numGuesses;
+    private int points = 0;
+    private TextView txtPoints;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.third_activity);
-        String[] s = {"שלום", "כוכבה", "זוארץ", "ארטישוק","חתול","חולצה","בננה","טילון","קממבר","יגוסלביה","ספרד"};
-        String[] categories = {"ברכה", "שמות", "שמות", "ירקות","חיות","דוממים","פירות","מאכלים","מאכלים","ערי בירה","ערי בירה"};
+        String[] s = {"שלום רב", "כוכבה", "זוארץ", "ארטישוק","חתול","חולצה","בננה","טילון","קממבר","יגוסלביה","ספרד"};
+        String[] categories = {"ברכה", "שמות", "שמות", "ירקות","חיות","דוממים","פירות","מאכלים","מאכלים","ערי בירה","מדינות"};
         Random ran = new Random();
 
         int num = ran.nextInt(s.length);
-//        int num = 7;
+//        int num = 0;
         str = s[num];
         String strCategory = categories[num];
+
 
         //OBJECTS INITIALIZATION
         layoutMenu = findViewById(R.id.layout_menu);
@@ -53,10 +57,23 @@ public class Third_Screen extends AppCompatActivity {
         foundLetters  = 0;
         numGuesses = 0;
 
-        //--- Initialize TextView
+        //--- Initialize TextViews
         TextView txtView = findViewById(R.id.txt_category);
         txtView.setText(strCategory);
+
+        txtPoints = findViewById(R.id.txt_scores);
+
     }
+    private void reducePoints(){
+        if(points>5)
+            points-=5;
+        else
+            points=0;
+
+        txtPoints.setText(Integer.valueOf(points).toString());
+    }
+
+
     public static void wait(int ms)
     {
         try
@@ -77,22 +94,33 @@ public class Third_Screen extends AppCompatActivity {
         {
             case 0:
                 img.setImageResource(R.drawable.hang2);
+                reducePoints();
                 playSoundWrong();
+
                 break;
             case 1:
                 img.setImageResource(R.drawable.hang3);
+                reducePoints();
+
                 playSoundWrong();
                 break;
             case 2:
                 img.setImageResource(R.drawable.hang4);
+                reducePoints();
+
                 playSoundWrong();
                 break;
             case 3:
                 img.setImageResource(R.drawable.hang7);
+                reducePoints();
+
                 playSoundWrong();
+
                 break;
             case 4:
                 img.setImageResource(R.drawable.hang8);
+                reducePoints();
+
                 playSoundWrong();
                 break;
             case 5:
@@ -107,6 +135,12 @@ public class Third_Screen extends AppCompatActivity {
     }
     //===================
     //CLICK EVENTS(NON-LETTERS)
+
+    public void onClickAgain(View view) {
+        Intent intent = new Intent(this,Second_Screen.class);
+        startActivity(intent);
+    }
+
     public void onClickMenu(View view) {
 
 //        layoutGame.setVisibility(View.GONE);
@@ -130,6 +164,12 @@ public class Third_Screen extends AppCompatActivity {
 
     }
     //====GAME REALTED FUNCTIONS========//
+    private void endGameCheck()
+    {
+        if(foundLetters==str.length() || (foundLetters==str.length()-1 && str.indexOf(' ')!=-1))
+            endGame(1);//Won the game!
+
+    }
     private void endGame(int state)
     {
         //Lose
@@ -160,6 +200,9 @@ public class Third_Screen extends AppCompatActivity {
            draw.start();
 
         }
+
+        //TODO: ENTER SCORE TO DB
+
     }
 
     private void createWordsGame()
@@ -195,14 +238,35 @@ public class Third_Screen extends AppCompatActivity {
             i++;
 
         }
+        i+=1;
+        LinearLayout secondLayout = findViewById(R.id.second_word_layout);
 
-//        while(i<len_word)
-//        {
-//
-//        }
+        while(i<len_word)
+        {
+            ImageView imgView = new ImageView(this);
+            //TODO: Change size of lines in accordance to length of a word
+            int size  = 0;
+            if(len_word<=6)
+                size = 150;
+            else if(len_word==7)
+                size=120;
+            else
+                size=100;
+
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size,size);
+
+            imgView.setLayoutParams(params);
+            imgView.setBackgroundResource(R.drawable.letter_blank);
+            secondLayout.addView(imgView);
+            i++;
+
+        }
         wordAdded = true;
 
     }
+
+
 
     private void applyLetter(int i,char ch)
     {
@@ -306,6 +370,113 @@ public class Third_Screen extends AppCompatActivity {
                 imgView.setBackgroundResource(R.drawable.final_zadik);
                 break;
         }
+        points+=10;
+        txtPoints.setText(Integer.valueOf(points).toString());
+    }
+    private void applyLetterAfter(int i,char ch)
+    {
+        LinearLayout layout = findViewById(R.id.second_word_layout);
+
+        ImageView imgView = (ImageView) layout.getChildAt(i- str.indexOf(' ')-1);
+
+        switch(ch)
+        {
+            case 'א':
+                imgView.setBackgroundResource(R.drawable.alef);
+                break;
+            case 'ב':
+                imgView.setBackgroundResource(R.drawable.bet);
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth()-20,imgView.getHeight()-20));
+
+                break;
+            case 'ג':
+                imgView.setBackgroundResource(R.drawable.gimel);
+                break;
+            case 'ד':
+                imgView.setBackgroundResource(R.drawable.daled);
+                break;
+            case 'ה':
+                imgView.setBackgroundResource(R.drawable.hey);
+                break;
+            case 'ו':
+                imgView.setBackgroundResource(R.drawable.vav);
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth(),imgView.getHeight()-20));
+
+                break;
+            case 'ז':
+                imgView.setBackgroundResource(R.drawable.zi);
+                break;
+            case 'ח':
+                imgView.setBackgroundResource(R.drawable.het);
+                break;
+            case 'ט':
+                imgView.setBackgroundResource(R.drawable.tet);
+                break;
+            case 'י':
+                imgView.setBackgroundResource(R.drawable.yud);
+                break;
+            case 'כ':
+                imgView.setBackgroundResource(R.drawable.kaf);
+                break;
+            case 'ל':
+                imgView.setBackgroundResource(R.drawable.lamed);
+                break;
+            case 'מ':
+                imgView.setBackgroundResource(R.drawable.mem);
+                break;
+            case 'נ':
+                imgView.setBackgroundResource(R.drawable.nun);
+                break;
+            case 'ס':
+                imgView.setBackgroundResource(R.drawable.samech);
+                break;
+            case 'ע':
+                imgView.setBackgroundResource(R.drawable.ain);
+                break;
+            case 'פ':
+                imgView.setBackgroundResource(R.drawable.pey);
+                break;
+            case 'צ':
+                imgView.setBackgroundResource(R.drawable.zadik);
+                break;
+            case 'ק':
+                imgView.setBackgroundResource(R.drawable.kuf);
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth(),imgView.getHeight()+10));
+
+                break;
+            case 'ר':
+                imgView.setBackgroundResource(R.drawable.resh);
+                break;
+            case 'ש':
+                imgView.setBackgroundResource(R.drawable.shin);
+                break;
+            case 'ת':
+                imgView.setBackgroundResource(R.drawable.taf);
+                break;
+            case 'ך':
+                imgView.setBackgroundResource(R.drawable.final_kaf);
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth(),imgView.getHeight()+10));
+
+                break;
+            case 'ם':
+                imgView.setBackgroundResource(R.drawable.final_m);
+
+                break;
+            case 'ן':
+                imgView.setBackgroundResource(R.drawable.final_nun);
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth(),imgView.getHeight()+10));
+                break;
+            case 'ף':
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth(),imgView.getHeight()+10));
+                imgView.setBackgroundResource(R.drawable.final_pey);
+                break;
+            case 'ץ':
+                imgView.setLayoutParams(new LinearLayout.LayoutParams(imgView.getWidth(),imgView.getHeight()+10));
+                imgView.setBackgroundResource(R.drawable.final_zadik);
+                break;
+        }
+        points+=10;
+        txtPoints.setText(Integer.valueOf(points).toString());
     }
     private int checkLetter(char ch)
     {
@@ -313,9 +484,15 @@ public class Third_Screen extends AppCompatActivity {
         int val = str.indexOf(ch,ind);
         int count = 0;
 
+        int valSpace = str.indexOf(' ');
         if(val!=-1) {
             //Reveals the letter
-            applyLetter(val,ch);
+            if(valSpace!=-1)
+            {
+                applyLetter(val,ch);
+            }
+            else
+                applyLetter(val,ch);
 
             //Update values
             ind = val + 1;
@@ -323,9 +500,10 @@ public class Third_Screen extends AppCompatActivity {
 
             count+=1;
 
-            while(val!=-1) {
+            while(val!=-1 ) {
                 //Reveals the letter
-                applyLetter(val,ch);
+                    applyLetter(val,ch);
+
 
                 //Update values
                 ind = val + 1;
@@ -348,10 +526,6 @@ public class Third_Screen extends AppCompatActivity {
 
         img.startAnimation(anim);
     }
-    private void startAnimationWinner()
-    {
-
-    }
     private void startAnimationButton(int idNum) {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.scale_up);
         Button btnAlef = findViewById(idNum);
@@ -360,7 +534,6 @@ public class Third_Screen extends AppCompatActivity {
 
 
     }
-
     private void startAnimationMenu(int state)
     {
 
@@ -477,8 +650,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else
         {
@@ -515,8 +687,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
 
 
         }
@@ -551,8 +722,8 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
+
         }
         else
         {
@@ -585,8 +756,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else
         {
@@ -620,8 +790,8 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
+
         }
         else
         {
@@ -655,8 +825,8 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
+
         }
         else
         {
@@ -688,8 +858,8 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
+
         }
         else
         {
@@ -720,8 +890,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else
         {
@@ -756,8 +925,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else
         {
@@ -789,8 +957,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else
         {
@@ -825,8 +992,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
 
 
@@ -846,8 +1012,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=foundFinal;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else if(found==0)
         {
@@ -917,8 +1082,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
 
 
@@ -937,8 +1101,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=foundFinal;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else if(found==0)
         {
@@ -969,8 +1132,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
 
         int foundFinal = checkLetter('ן');
@@ -988,8 +1150,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=foundFinal;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else if(found==0)
         {
@@ -1025,8 +1186,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else
         {
@@ -1057,8 +1217,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else
         {
@@ -1090,8 +1249,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
 
         int foundFinal = checkLetter('ף');
@@ -1108,8 +1266,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=foundFinal;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else if(found==0)
         {
@@ -1148,8 +1305,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
 
         int foundFinal = checkLetter('ץ');
@@ -1167,8 +1323,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=foundFinal;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else if(found==0)
         {
@@ -1201,8 +1356,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else
         {
@@ -1234,8 +1388,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else
         {
@@ -1266,8 +1419,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else
         {
@@ -1299,8 +1451,7 @@ public class Third_Screen extends AppCompatActivity {
             //Adds number of letters that were found
             foundLetters+=found;
 
-            if(foundLetters==str.length())
-                endGame(1);//Won the game!
+            endGameCheck();
         }
         else
         {

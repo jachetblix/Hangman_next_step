@@ -81,6 +81,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatButton
+                android:text="PLAY AGAIN"
+                style="@style/button"
+                android:textSize="24dp"
+                android:background="@drawable/button_background"
+                android:layout_margin="30dp"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:onClick="onClickAgain"/>
+        </LinearLayout>
         <ImageView
             android:id="@+id/winner_animation"
             android:layout_width="match_parent"
@@ -163,6 +178,18 @@
             android:layout_gravity="center"
             android:gravity="center">
 
+
+            <LinearLayout
+                android:id="@+id/first_word_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+
+
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/second_word_layout"
                 android:layout_width="match_parent"
@@ -188,18 +215,6 @@
                 <!--                    android:layout_width="50dp"-->
                 <!--                    android:layout_height="50dp"-->
                 <!--                    android:src="@drawable/letter_blank"/>-->
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/first_word_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center"
-                android:gravity="center">
-
 
 
             </LinearLayout>

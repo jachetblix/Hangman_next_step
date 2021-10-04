@@ -10,15 +10,21 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity{
 
     Button button_2;
     private Intent intentRecord;
+    //TODO: Transfer this string to next screens.
+    private String playerName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 //        button_2 = findViewById(R.id.button2);
     }
     private void startAnimationButton(int idNum) {
@@ -81,5 +87,14 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+    public void submitName(View view) {
+        LinearLayout layout = findViewById(R.id.layout_name);
+        EditText editTxt = findViewById(R.id.edit_txt_name);
+
+
+        playerName =  editTxt.getText().toString();
+        layout.setVisibility(View.GONE);
+
+    }
 }
 //COMMIT CHECKING

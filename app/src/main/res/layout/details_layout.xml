@@ -18,8 +18,10 @@
         android:layout_height="match_parent"
             android:gravity="center"
         android:layout_gravity="center"
+            android:textSize="30sp"
+            android:fontFamily="@font/open_sans_extra_bold_italic"
             android:textAlignment="center"
-        android:text="Enter your name"/>
+        android:text="Enter Your Name"/>
     </LinearLayout>
 
     <LinearLayout
@@ -30,13 +32,15 @@
         android:gravity="center"
         android:layout_weight="1">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_txt_name"
             android:layout_gravity="center"
             android:layout_margin="30dp"
             android:textAlignment="center"
             android:background="@drawable/input_text"
             android:hint="Name"
             style="@style/EditText"
-
+            android:textSize="20sp"
+            android:fontFamily="@font/open_sans_extra_bold_italic"
             android:layout_marginBottom="30dp"
             android:layout_width="200dp"
             android:layout_height="50dp"/>
@@ -46,7 +50,8 @@
             android:layout_height="50dp"
             style="@style/button"
             android:background="@drawable/button_background"
-            android:text="submit"/>
+            android:text="submit"
+            android:onClick="submitName"/>
 
     </LinearLayout>
 
