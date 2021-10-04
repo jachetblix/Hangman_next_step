@@ -11,6 +11,7 @@
         android:theme="@style/Theme.Hangman_next_step">
         <activity android:name=".Second_Screen" />
         <activity android:name=".Third_Screen"/>
+        <activity android:name=".Record_Screen"/>
             <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
