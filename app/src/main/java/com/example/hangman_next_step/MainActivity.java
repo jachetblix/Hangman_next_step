@@ -3,6 +3,7 @@ package com.example.hangman_next_step;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -15,10 +16,17 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity{
 
+    // CREATE THE DB HERE SO WE CAN GET TO IT FROM ALL OVER THE APP
+    //final String TABLE_NAM ="record_table";
+   // final String TABLE_NAME ="record_table";
+   final String CREATE_TABLE_CM = "CREATE TABLE IF NOT EXISTS record_table(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, score INTEGER);";
+    SQLiteDatabase scoreDataBase;
+
     Button button_2;
     private Intent intentRecord;
     //TODO: Transfer this string to next screens.
     private String playerName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +34,8 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
 //        button_2 = findViewById(R.id.button2);
+        scoreDataBase = openOrCreateDatabase("database.db", MODE_PRIVATE, null);
+        scoreDataBase.execSQL(CREATE_TABLE_CM);
     }
     private void startAnimationButton(int idNum) {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.scale_up);
