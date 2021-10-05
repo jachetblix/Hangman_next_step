@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +23,7 @@ public class Third_Screen extends AppCompatActivity {
     private String str;
     private int foundLetters;
     private int numGuesses;
+    private TextView hintText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +31,22 @@ public class Third_Screen extends AppCompatActivity {
         setContentView(R.layout.third_activity);
         Intent intent = getIntent();
         String level = intent.getStringExtra("level");
+        String hint = "";
         if (level.equals("Easy")){
             String[] easy = {"תופים","גיטרה","פסנטר","חתול","קנציפר","יונדאי","כלב","פורד","שברולט"};
             Random ran = new Random();
             str = easy[ran.nextInt(easy.length)];
             if (str.equals("שברולט")|| str.equals("פורד")||str.equals("יונדאי"))
             {
-                String hint = "Cars";
+                 hint = "Cars";
             }
             if (str.equals("קנציפר")|| str.equals("חתול")||str.equals("כלב"))
             {
-                String hint = "Animals";
+                 hint = "Animals";
             }
             if (str.equals("תופים")|| str.equals("פסנטר")||str.equals("גיטרה"))
             {
-                String hint = "Instruments";
+                 hint = "Instruments";
             }
 
 
@@ -55,15 +58,15 @@ public class Third_Screen extends AppCompatActivity {
             str = medium[ran.nextInt(medium.length)];
             if (str.equals("במוו")|| str.equals("למבורגיני")||str.equals("פורש"))
             {
-                String hint = "Cars";
+                 hint = "Cars";
             }
             if (str.equals("יונה")|| str.equals("שפן")||str.equals("תוכי"))
             {
-                String hint = "Animals";
+                 hint = "Animals";
             }
             if (str.equals("משולש")|| str.equals("מצילה")||str.equals("קלרניט"))
             {
-                String hint = "Instruments";
+                 hint = "Instruments";
             }
 
         }
@@ -74,15 +77,15 @@ public class Third_Screen extends AppCompatActivity {
             str = hard[ran.nextInt(hard.length)];
             if (str.equals("בוגאטי")|| str.equals("קונינזג")||str.equals("טאטא"))
             {
-                String hint = "Cars";
+                 hint = "Cars";
             }
             if (str.equals("ינשוף")|| str.equals("סוריקטה")||str.equals("ארמדילו")||str.equals("פיל"))
             {
-                String hint = "Animals";
+                 hint = "Animals";
             }
             if (str.equals("גונג")|| str.equals("עוד")||str.equals("קלימבה"))
             {
-                String hint = "Instruments";
+                 hint = "Instruments";
             }
 
 
@@ -92,6 +95,8 @@ public class Third_Screen extends AppCompatActivity {
         //OBJECTS INITIALIZATION
         layoutMenu = findViewById(R.id.layout_menu);
         layoutGame = findViewById(R.id.layout_game);
+        hintText = findViewById(R.id.txt_category);
+        hintText.setText(hint);
 
         //Buttons initialization
         btnMenu = findViewById(R.id.btn_menu);
