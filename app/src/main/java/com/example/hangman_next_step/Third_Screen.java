@@ -21,6 +21,7 @@ public class Third_Screen extends AppCompatActivity {
     private Button btnMenu;
     private boolean wordAdded,secondWordAdded;
     private String str;
+    private String strCategory;
     private int foundLetters;
     private int numGuesses;
     private TextView hintText;
