@@ -104,6 +104,8 @@ public class MainActivity extends AppCompatActivity{
         playerName =  editTxt.getText().toString();
 
         Intent intent = new Intent(this, Second_Screen.class);
+        intent.putExtra("playerName", playerName);
+
         startActivity(intent);
 
     }

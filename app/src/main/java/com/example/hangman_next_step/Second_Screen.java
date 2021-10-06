@@ -33,13 +33,17 @@ public class Second_Screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_activity);
 
-
+        String playerName = getIntent().getStringExtra("playerName");
+        TextView playerTe = findViewById(R.id.helloUser);
+        playerTe.setText("hello " + playerName + " lets play");
         //Objects
         third_activity = findViewById(R.id.third_activity_btn);
 //        third_activity.setOnClickListener(this);
         button3 = findViewById(R.id.button3);
 //        button3.setOnClickListener(this);
         intent= new Intent(this, Third_Screen.class);
+        intent.putExtra("playerName", playerName);
+
         txtViewChosen = findViewById(R.id.txt_level_chose);
         imgViewIcon = findViewById(R.id.anim_emoji);
         imgViewIcon.setVisibility(View.INVISIBLE);
