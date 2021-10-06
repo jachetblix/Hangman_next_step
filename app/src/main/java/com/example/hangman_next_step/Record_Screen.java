@@ -23,9 +23,9 @@ public class Record_Screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.record_activity);
 
-        database = openOrCreateDatabase("database.sql", MODE_PRIVATE, null);
+        database = openOrCreateDatabase("database1.sql", MODE_PRIVATE, null);
 
-        database.execSQL(CREATE_TABLE_CMD);
+        //database.execSQL(CREATE_TABLE_CMD);
 
         final ListView listview = findViewById(R.id.recordListView);
         final EditText nameEt = findViewById(R.id.firstInput);
@@ -51,7 +51,7 @@ public class Record_Screen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 adapter.clear();
-                
+
                 Cursor cursor =  database.query(TABLE_NAME, null,null,null,null,null,null,null);
 
                 int nameIndex = cursor.getColumnIndex("name");

@@ -17,32 +17,25 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity{
 
-    // CREATE THE DB HERE SO WE CAN GET TO IT FROM ALL OVER THE APP
-    //final String TABLE_NAM ="record_table";
-   public final String TABLE_NAME ="record_table";
-   final String CREATE_TABLE_CM = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME +"(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, score INTEGER);";
-    public SQLiteDatabase scoreDataBase;
-
     Button button_2;
     private Intent intentRecord;
     //TODO: Transfer this string to next screens.
     private String playerName;
 
 
+    final String TABLE_NAME = "score_table";
+    final String CREATE_TABLE_CMD="CREATE TABLE IF NOT EXISTS " + TABLE_NAME +"(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);";
+    SQLiteDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        button_2 = findViewById(R.id.button2);
-        scoreDataBase = openOrCreateDatabase("database.db", MODE_PRIVATE, null);
-        scoreDataBase.execSQL(CREATE_TABLE_CM);
+        //CREATE DB FOR THE APP
+        database = openOrCreateDatabase("database1.sql", MODE_PRIVATE, null);
 
-        //insertion to db
-        ContentValues contentvalues = new ContentValues();
-        contentvalues.put("name", "roi");
-        contentvalues.put("score", 999);
-        scoreDataBase.insert(TABLE_NAME, null, contentvalues);
+        database.execSQL(CREATE_TABLE_CMD);
+
     }
     private void startAnimationButton(int idNum) {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.scale_up);
