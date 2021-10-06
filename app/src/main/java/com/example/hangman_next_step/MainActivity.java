@@ -65,17 +65,11 @@ public class MainActivity extends AppCompatActivity{
 
     //Click events
     public void onClickStart(View view) {
-//        playSoundButton();
+        // show enter player name layout
+        LinearLayout layout = findViewById(R.id.layout_name);
+        layout.setVisibility(View.VISIBLE);
 
-        Animation anim = AnimationUtils.loadAnimation(this,R.anim.scale_up);
-        Button btnStartGame = findViewById(R.id.btn_start_game);
-        btnStartGame.startAnimation(anim);
-        startAnimationButton(R.id.btn_start_game);
-        playSoundButton();
-//        createWordsGame();
 
-        Intent intent = new Intent(this, Second_Screen.class);
-        startActivity(intent);
 
 
     }
@@ -98,12 +92,19 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void submitName(View view) {
-        LinearLayout layout = findViewById(R.id.layout_name);
+
+        Animation anim = AnimationUtils.loadAnimation(this,R.anim.scale_up);
+        Button btnStartGame = findViewById(R.id.btn_start_game);
+        btnStartGame.startAnimation(anim);
+        startAnimationButton(R.id.btn_start_game);
+        playSoundButton();
+
+        //get player name to transfer
         EditText editTxt = findViewById(R.id.edit_txt_name);
-
-
         playerName =  editTxt.getText().toString();
-        layout.setVisibility(View.GONE);
+
+        Intent intent = new Intent(this, Second_Screen.class);
+        startActivity(intent);
 
     }
 }
