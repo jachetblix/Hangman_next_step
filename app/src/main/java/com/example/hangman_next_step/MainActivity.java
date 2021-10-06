@@ -2,6 +2,7 @@ package com.example.hangman_next_step;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
@@ -18,9 +19,9 @@ public class MainActivity extends AppCompatActivity{
 
     // CREATE THE DB HERE SO WE CAN GET TO IT FROM ALL OVER THE APP
     //final String TABLE_NAM ="record_table";
-   // final String TABLE_NAME ="record_table";
-   final String CREATE_TABLE_CM = "CREATE TABLE IF NOT EXISTS record_table(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, score INTEGER);";
-    SQLiteDatabase scoreDataBase;
+   public final String TABLE_NAME ="record_table";
+   final String CREATE_TABLE_CM = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME +"(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, score INTEGER);";
+    public SQLiteDatabase scoreDataBase;
 
     Button button_2;
     private Intent intentRecord;
@@ -36,6 +37,12 @@ public class MainActivity extends AppCompatActivity{
 //        button_2 = findViewById(R.id.button2);
         scoreDataBase = openOrCreateDatabase("database.db", MODE_PRIVATE, null);
         scoreDataBase.execSQL(CREATE_TABLE_CM);
+
+        //insertion to db
+        ContentValues contentvalues = new ContentValues();
+        contentvalues.put("name", "roi");
+        contentvalues.put("score", 999);
+        scoreDataBase.insert(TABLE_NAME, null, contentvalues);
     }
     private void startAnimationButton(int idNum) {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.scale_up);
