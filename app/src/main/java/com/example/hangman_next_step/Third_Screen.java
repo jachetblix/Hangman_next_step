@@ -181,7 +181,7 @@ public class Third_Screen extends AppCompatActivity {
     }
     //===================
     //CLICK EVENTS(NON-LETTERS)
-
+    //TODO: after restart of game the name pf player is lost we need to change it
     public void onClickAgain(View view) {
         Intent intent = new Intent(this,Second_Screen.class);
         startActivity(intent);

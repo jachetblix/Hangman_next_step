@@ -13,4 +13,9 @@
     <string name="txt_again_game">שחק שוב</string>
     <string name="txt_home_game">מסך בית</string>
     <string name="txt_return_game">חזור</string>
+    <string name="txt_records">"טבלת תוצאות "</string>
+    <string name="txt_submit">שלח</string>
+    <string name="txt_dismiss">בטל</string>
+    <string name="txt_details">נא הכנס את השם</string>
+    <string name="txt_entered_name">שם</string>
 </resources>

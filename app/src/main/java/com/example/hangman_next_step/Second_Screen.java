@@ -35,12 +35,14 @@ public class Second_Screen extends AppCompatActivity {
 
         String playerName = getIntent().getStringExtra("playerName");
         TextView playerTe = findViewById(R.id.helloUser);
+        //TODO localisatin of playerName
         playerTe.setText("hello " + playerName + " lets play");
         //Objects
 //        third_activity.setOnClickListener(this);
         button3 = findViewById(R.id.button3);
 //        button3.setOnClickListener(this);
         intent= new Intent(this, Third_Screen.class);
+        //TODO localisation player name
         intent.putExtra("playerName", playerName);
 
         txtViewChosen = findViewById(R.id.txt_level_chose);

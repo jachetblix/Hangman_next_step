@@ -19,4 +19,9 @@
     <string name="txt_again_game">Play Again</string>
     <string name="txt_home_game">Home</string>
     <string name="txt_return_game">Return</string>
+    <string name="txt_records">Records Table</string>
+    <string name="txt_submit">Submit</string>
+    <string name="txt_dismiss">Dismiss</string>
+    <string name="txt_details">Please Enter Your Name</string>
+    <string name="txt_entered_name">Name</string>
 </resources>

@@ -14,7 +14,7 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Record_Screen extends AppCompatActivity {
-
+    //TODO: localisation of TABLE_NAME
     final String TABLE_NAME = "score_table";
     final String CREATE_TABLE_CMD="CREATE TABLE IF NOT EXISTS " + TABLE_NAME +"(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);";
     SQLiteDatabase database;

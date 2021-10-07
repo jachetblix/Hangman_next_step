@@ -21,7 +21,7 @@
             android:textSize="30sp"
             android:fontFamily="@font/open_sans_extra_bold_italic"
             android:textAlignment="center"
-        android:text="Enter Your Name"/>
+        android:text="@string/txt_details"/>
     </LinearLayout>
 
     <LinearLayout
@@ -37,7 +37,7 @@
             android:layout_margin="30dp"
             android:textAlignment="center"
             android:background="@drawable/input_text"
-            android:hint="Name"
+            android:hint="@string/txt_entered_name"
             style="@style/EditText"
             android:textSize="20sp"
             android:fontFamily="@font/open_sans_extra_bold_italic"
@@ -50,7 +50,7 @@
             android:layout_height="50dp"
             style="@style/button"
             android:background="@drawable/button_background"
-            android:text="submit"
+            android:text="@string/txt_submit"
             android:onClick="submitName"/>
 
     </LinearLayout>

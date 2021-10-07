@@ -4,6 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1287037037037037" />
+        <entry key="..\:/Users/Artyom/Documents/GitHub/Hangman_next_step1/app/src/main/res/layout/activity_main.xml" value="0.36186594202898553" />
+        <entry key="..\:/Users/Artyom/Documents/GitHub/Hangman_next_step1/app/src/main/res/layout/details_layout.xml" value="0.36186594202898553" />
+        <entry key="..\:/Users/Artyom/Documents/GitHub/Hangman_next_step1/app/src/main/res/layout/ending_layout.xml" value="0.36186594202898553" />
+        <entry key="..\:/Users/Artyom/Documents/GitHub/Hangman_next_step1/app/src/main/res/layout/game_spinner.xml" value="0.36186594202898553" />
+        <entry key="..\:/Users/Artyom/Documents/GitHub/Hangman_next_step1/app/src/main/res/layout/record_activity.xml" value="0.28804347826086957" />
+        <entry key="..\:/Users/Artyom/Documents/GitHub/Hangman_next_step1/app/src/main/res/layout/second_activity.xml" value="0.36186594202898553" />
         <entry key="app/src/main/res/drawable/button_background.xml" value="0.25555555555555554" />
         <entry key="app/src/main/res/drawable/button_background2.xml" value="0.19444444444444445" />
         <entry key="app/src/main/res/drawable/button_letter.xml" value="0.19444444444444445" />
