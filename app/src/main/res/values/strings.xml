@@ -6,10 +6,10 @@
     <string name="btn_scores">Scores</string>
 
     <string-array name="gamelevels">
-        <item>Choose your difficulty</item>
-        <item>Easy</item>
-        <item>Medium</item>
-        <item>Hard</item>
+        <item>@string/txt_choose_difficulty</item>
+        <item>@string/txt_easy</item>
+        <item>@string/txt_medium</item>
+        <item>@string/txt_hard</item>
     </string-array>
     <string name="txt_level">Choose Game Level</string>
     <string name="txt_hangman">Hangman</string>
@@ -24,4 +24,12 @@
     <string name="txt_dismiss">Dismiss</string>
     <string name="txt_details">Please Enter Your Name</string>
     <string name="txt_entered_name">Name</string>
+    <string name="txt_choosen_level">Level</string>
+    <string name="txt_choose_difficulty">Choose Your Level Difficulty</string>
+    <string name="txt_animals">Animals</string>
+    <string name="txt_cars">Cars</string>
+    <string name="txt_instruments">instruments</string>
+    <string name="txt_easy">Easy</string>
+    <string name="txt_medium">Medium</string>
+    <string name="txt_hard">Hard</string>
 </resources>

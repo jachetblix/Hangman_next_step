@@ -33,9 +33,8 @@ public class Second_Screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_activity);
 
-        String playerName = getIntent().getStringExtra("playerName");
+        String playerName = getIntent().getStringExtra(getString(R.string.txt_details));
         TextView playerTe = findViewById(R.id.helloUser);
-        //TODO localisatin of playerName
         playerTe.setText("hello " + playerName + " lets play");
         //Objects
 //        third_activity.setOnClickListener(this);
@@ -121,7 +120,7 @@ public class Second_Screen extends AppCompatActivity {
         playSoundButton();
         startAnimationButton(R.id.button3);
         AlertDialog.Builder builder = button3.setPositiveButton("Ok", (dialog, which) -> {
-            if (!spinner.getSelectedItem().toString().equalsIgnoreCase("Choose your difficulty")) {
+            if (!spinner.getSelectedItem().toString().equalsIgnoreCase(getString(R.string.txt_choose_difficulty))) {
                 Toast.makeText(Second_Screen.this,
                         spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT)
                         .show();
@@ -148,13 +147,13 @@ public class Second_Screen extends AppCompatActivity {
                 Boolean animationMode = true;
 
 
-                if (!spinner.getSelectedItem().toString().equalsIgnoreCase("Choose your difficulty")) {
-                    if (chosenOption.equals("Easy")) {
+                if (!spinner.getSelectedItem().toString().equalsIgnoreCase(getString(R.string.txt_choosen_level))) {
+                    if (chosenOption.equals(getString(R.string.txt_easy))) {
                         imgViewIcon.setImageResource(R.drawable.easy_emoji_animation);
                         btnStart.setVisibility(View.VISIBLE);
 
 
-                    } else if (chosenOption.equals("Medium")) {
+                    } else if (chosenOption.equals(getString(R.string.txt_medium))) {
                         imgViewIcon.setImageResource(R.drawable.medium_emoji_anim);
                         btnStart.setVisibility(View.VISIBLE);
 
@@ -177,7 +176,7 @@ public class Second_Screen extends AppCompatActivity {
 
             }
         });
-        button3.setNegativeButton("dismiss", (dialog, which) -> dialog.dismiss());
+        button3.setNegativeButton(getString(R.string.txt_dismiss), (dialog, which) -> dialog.dismiss());
         button3.setView(mView);
         AlertDialog dialog = button3.create();
         dialog.show();
@@ -187,7 +186,7 @@ public class Second_Screen extends AppCompatActivity {
 
     public void onClickStartGame(View view) {
         playSoundButton();
-        intent.putExtra("level", spinner.getSelectedItem().toString());
+        intent.putExtra(getString(R.string.txt_choosen_level), spinner.getSelectedItem().toString());
         startActivity(intent);
     }
 

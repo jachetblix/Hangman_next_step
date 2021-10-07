@@ -18,4 +18,12 @@
     <string name="txt_dismiss">בטל</string>
     <string name="txt_details">נא הכנס את השם</string>
     <string name="txt_entered_name">שם</string>
+    <string name="txt_choosen_level">רמה</string>
+    <string name="txt_choose_difficulty">בחר את רמת המשחק</string>
+    <string name="txt_animals">חיות</string>
+    <string name="txt_cars">רכבים</string>
+    <string name="txt_instruments">כלי נגינה</string>
+    <string name="txt_easy">קל</string>
+    <string name="txt_medium">בינוני</string>
+    <string name="txt_hard">קשה</string>
 </resources>
