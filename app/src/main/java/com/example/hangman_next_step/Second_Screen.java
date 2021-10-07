@@ -22,7 +22,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Second_Screen extends AppCompatActivity {
-    Button third_activity;
+    Button btnStart;
     Button button3;
     Intent intent;
     Spinner spinner;
@@ -37,7 +37,6 @@ public class Second_Screen extends AppCompatActivity {
         TextView playerTe = findViewById(R.id.helloUser);
         playerTe.setText("hello " + playerName + " lets play");
         //Objects
-        third_activity = findViewById(R.id.third_activity_btn);
 //        third_activity.setOnClickListener(this);
         button3 = findViewById(R.id.button3);
 //        button3.setOnClickListener(this);
@@ -48,6 +47,8 @@ public class Second_Screen extends AppCompatActivity {
         imgViewIcon = findViewById(R.id.anim_emoji);
         imgViewIcon.setVisibility(View.INVISIBLE);
 
+        btnStart = findViewById(R.id.start_button);
+        btnStart.setVisibility(View.GONE);
 
     }
     //
@@ -109,6 +110,7 @@ public class Second_Screen extends AppCompatActivity {
     public void onClickGameLevel(View view) {
         AlertDialog.Builder button3 = new AlertDialog.Builder(Second_Screen.this);
         View mView = getLayoutInflater().inflate(R.layout.game_spinner,null);
+        //Localization
         button3.setTitle("Choose you game level");
         spinner = mView.findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(Second_Screen.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.gamelevels));
@@ -147,11 +149,17 @@ public class Second_Screen extends AppCompatActivity {
                 if (!spinner.getSelectedItem().toString().equalsIgnoreCase("Choose your difficulty")) {
                     if (chosenOption.equals("Easy")) {
                         imgViewIcon.setImageResource(R.drawable.easy_emoji_animation);
+                        btnStart.setVisibility(View.VISIBLE);
+
 
                     } else if (chosenOption.equals("Medium")) {
                         imgViewIcon.setImageResource(R.drawable.medium_emoji_anim);
+                        btnStart.setVisibility(View.VISIBLE);
+
                     } else {
                         imgViewIcon.setImageResource(R.drawable.hard_emoji_anim);
+                        btnStart.setVisibility(View.VISIBLE);
+
                     }
 
 

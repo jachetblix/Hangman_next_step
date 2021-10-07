@@ -6,4 +6,11 @@
     <string name="btn_start_game">התחל משחק</string>
     <string name="btn_scores">טבלת ניקוד</string>
     <string name="txt_level">בחר דרגת קושי</string>
+    <string name="txt_hangman">איש תלוי</string>
+    <string name="txt_category_instruments">כלי נגינה</string>
+    <string name="txt_points_game">נקודות</string>
+    <string name="txt_menu_game">תפריט</string>
+    <string name="txt_again_game">שחק שוב</string>
+    <string name="txt_home_game">מסך בית</string>
+    <string name="txt_return_game">חזור</string>
 </resources>

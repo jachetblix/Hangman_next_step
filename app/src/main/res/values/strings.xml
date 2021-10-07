@@ -12,4 +12,11 @@
         <item>Hard</item>
     </string-array>
     <string name="txt_level">Choose Game Level</string>
+    <string name="txt_hangman">Hangman</string>
+    <string name="txt_category_instruments">Instruments</string>
+    <string name="txt_points_game">Points</string>
+    <string name="txt_menu_game">Menu</string>
+    <string name="txt_again_game">Play Again</string>
+    <string name="txt_home_game">Home</string>
+    <string name="txt_return_game">Return</string>
 </resources>

@@ -57,19 +57,19 @@
         android:layout_weight="1"
         android:gravity="center|bottom"
         android:orientation="vertical" >
-    <androidx.appcompat.widget.AppCompatButton
-        android:stateListAnimator="@null"
 
-        android:layout_gravity="center_horizontal|center"
-        style="@style/button"
-        android:background="@drawable/button_background"
-        android:id="@+id/third_activity_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/let_s_start_the_game"
-        android:layout_marginBottom="30dp"
-        android:onClick="onClickStartGame"
-    />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/start_button"
+
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/button_background"
+            android:onClick="onClickStartGame"
+            android:stateListAnimator="@null"
+            android:text="@string/let_s_start_the_game" />
 
     </LinearLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

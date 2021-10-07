@@ -36,7 +36,7 @@
                 android:fontFamily="@font/open_sans_extra_bold"
 
                 android:gravity="center_vertical"
-                android:text="נקודות"
+                android:text="@string/txt_points_game"
 
                 android:textColor="@color/colorPrimaryDarker"
                 android:textSize="28sp" />
@@ -69,7 +69,7 @@
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/open_sans_extra_bold_italic"
-                android:text="תפריט"
+                android:text="@string/txt_menu_game"
                 android:onClick="onClickMenu"
                 tools:ignore="RtlCompat" />
         </LinearLayout>
@@ -86,8 +86,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center">
+            <TextView
+                android:id="@+id/txt_answer"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="28sp"
+                android:fontFamily="@font/open_sans_extra_bold"/>
             <androidx.appcompat.widget.AppCompatButton
-                android:text="PLAY AGAIN"
+                android:text="@string/txt_again_game"
                 style="@style/button"
                 android:textSize="24dp"
                 android:background="@drawable/button_background"
@@ -97,14 +105,14 @@
                 android:onClick="onClickAgain"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:text="Exit"
+                android:text="@string/txt_home_game"
                 style="@style/button"
                 android:textSize="24dp"
                 android:background="@drawable/button_background"
                 android:layout_margin="30dp"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:onClick="onClickAgain"/>
+                android:onClick="onClickExit"/>
         </LinearLayout>
         <ImageView
             android:id="@+id/winner_animation"
@@ -129,15 +137,18 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:layout_weight="1">
+
                 <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="150dp"
-                    android:layout_height="75dp"
                     style="@style/button"
-                    android:background="@drawable/button_background"
+
+                    android:layout_width="200dp"
+                    android:layout_height="75dp"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="32sp"
-                    android:text="EXIT"
-                    android:layout_margin="50dp"/>
+                    android:layout_margin="50dp"
+                    android:background="@drawable/button_background"
+                    android:onClick="onClickExit"
+                    android:text="@string/txt_home_game"
+                    android:textSize="32sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_return"
@@ -149,7 +160,7 @@
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/white"
                     android:textSize="24sp"
-                    android:text="RETURN"/>
+                    android:text="@string/txt_return_game"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -161,7 +172,7 @@
             android:id="@+id/txt_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CATEGORY"
+            android:text=""
             android:fontFamily="@font/open_sans_extra_bold_italic"
             style="@style/Category_txt"
             android:background="@color/colorPrimaryDarker"

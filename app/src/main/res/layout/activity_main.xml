@@ -7,7 +7,17 @@
         android:orientation="vertical"
         tools:ignore="MissingConstraints"
         android:background="@color/colorPrimary"
-        >
+        >  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/hang1" />
+</LinearLayout>
      <include android:id="@+id/layout_name" layout="@layout/details_layout"
          android:visibility="gone"/>
 
@@ -22,33 +32,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_alignParentRight="true">
+                android:layout_alignParentRight="true"/>
 
 
-<!--                <pl.droidsonroids.gif.GifImageView-->
-<!--                    android:layout_width="40dp"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:layout_alignParentStart="true"-->
-<!--                    android:src="@drawable/coin_animation" />-->
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:text="210"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="10dp" />
-            </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_trophy"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentLeft="true"
-                android:layout_gravity="end"
-                android:background="@drawable/trophy"
-                android:onClick="onClickButton_trophy" />
 
         </RelativeLayout>
 
@@ -68,7 +54,7 @@
             android:layout_margin="100dp"
             android:fontFamily="@font/open_sans_extra_bold_italic"
             android:gravity="center"
-            android:text="איש תלוי"
+            android:text="@string/txt_hangman"
             android:textColor="#245368"
             android:textSize="50sp" />
 
@@ -110,7 +96,8 @@
 
             />
 
-        <LinearLayout
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"/>
