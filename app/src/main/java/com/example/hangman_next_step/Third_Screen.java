@@ -1,6 +1,8 @@
 package com.example.hangman_next_step;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -27,6 +29,9 @@ public class Third_Screen extends AppCompatActivity {
     private TextView hintText;
     private TextView txtPoints;
 
+    //db things
+    final String TABLE_NAME = "score_table";
+    SQLiteDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +42,14 @@ public class Third_Screen extends AppCompatActivity {
         System.out.println(level);
         String hint = "";
 
+        //db
+        database = openOrCreateDatabase("database2.sql", MODE_PRIVATE, null);
+
 
 
 
         if (level.equals("Easy") || level.equals("קל")){
-            String[] easy = {"תופים","גיטרה","פסנטר","חתול","קנציפר","יונדאי","כלב","פורד","שברולט"};
+            String[] easy = {"תופים","גיטרה","פסנטר","חתול","יונדאי","כלב","פורד","שברולט"};
             Random ran = new Random();
             str = easy[ran.nextInt(easy.length)];
             if (str.equals("שברולט")|| str.equals("פורד")||str.equals("יונדאי"))
@@ -217,6 +225,15 @@ public class Third_Screen extends AppCompatActivity {
     {
         //HERE EXIT
         playSoundButton();
+
+        //save to db the score
+        if( points > 0) {
+            ContentValues contentvalues = new ContentValues();
+            String playerName = getIntent().getStringExtra("playerName");
+            contentvalues.put("name", playerName);
+            contentvalues.put("score", points);
+            database.insert(TABLE_NAME, null, contentvalues);
+        }
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }

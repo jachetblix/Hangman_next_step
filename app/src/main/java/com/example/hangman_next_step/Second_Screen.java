@@ -33,7 +33,7 @@ public class Second_Screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_activity);
 
-        String playerName = getIntent().getStringExtra(getString(R.string.txt_details));
+        String playerName = getIntent().getStringExtra("playerName");
         TextView playerTe = findViewById(R.id.helloUser);
         playerTe.setText("hello " + playerName + " lets play");
         //Objects

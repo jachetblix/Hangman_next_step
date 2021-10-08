@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity{
 
 
     final String TABLE_NAME = "score_table";
-    final String CREATE_TABLE_CMD="CREATE TABLE IF NOT EXISTS " + TABLE_NAME +"(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);";
+    final String CREATE_TABLE_CMD="CREATE TABLE IF NOT EXISTS " + TABLE_NAME +"(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT , score INTEGER);";
     SQLiteDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         //CREATE DB FOR THE APP
-        database = openOrCreateDatabase("database1.sql", MODE_PRIVATE, null);
+        database = openOrCreateDatabase("database2.sql", MODE_PRIVATE, null);
 
         database.execSQL(CREATE_TABLE_CMD);
 
