@@ -32,14 +32,15 @@ public class Record_Screen extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         listview.setAdapter(adapter);
 
-        Cursor cursor =  database.query(TABLE_NAME, null,null,null,null,null,null,null);
+       // Cursor cursor =  database.query(TABLE_NAME, null,null,null,null,null,null,null);
+        Cursor cursor = database.rawQuery( "select * from "+ TABLE_NAME +" ORDER BY score DESC", null );
 
         int nameIndex = cursor.getColumnIndex("name");
         int scoreIndex = cursor.getColumnIndex("score");
 
         while(cursor.moveToNext())
         {
-            String name = cursor.getString(nameIndex) + " " + cursor.getString(scoreIndex);
+            String name = cursor.getString(nameIndex) + "       " + cursor.getString(scoreIndex);
             adapter.add(name);
         }
         adapter.notifyDataSetChanged();
