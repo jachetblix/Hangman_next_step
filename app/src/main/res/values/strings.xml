@@ -32,4 +32,6 @@
     <string name="txt_easy">Easy</string>
     <string name="txt_medium">Medium</string>
     <string name="txt_hard">Hard</string>
+    <string name="txt_hello">"Welcome "</string>
+    <string name="txt_game_start">"  let's play"</string>
 </resources>

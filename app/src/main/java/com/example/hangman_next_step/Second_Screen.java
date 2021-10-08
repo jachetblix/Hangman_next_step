@@ -36,7 +36,7 @@ public class Second_Screen extends AppCompatActivity {
         String playerName = getIntent().getStringExtra("playerName");
         int score = getIntent().getIntExtra("score" , 0);
         TextView playerTe = findViewById(R.id.helloUser);
-        playerTe.setText("hello " + playerName + " lets play");
+        playerTe.setText(getString(R.string.txt_hello)  + playerName  +  getString(R.string.txt_game_start));
         //Objects
 //        third_activity.setOnClickListener(this);
         button3 = findViewById(R.id.button3);

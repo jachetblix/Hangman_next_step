@@ -26,4 +26,6 @@
     <string name="txt_easy">קל</string>
     <string name="txt_medium">בינוני</string>
     <string name="txt_hard">קשה</string>
+    <string name="txt_hello">"שלום    "</string>
+    <string name="txt_game_start">"   נשחק "</string>
 </resources>
