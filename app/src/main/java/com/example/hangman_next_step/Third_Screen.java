@@ -45,6 +45,9 @@ public class Third_Screen extends AppCompatActivity {
         //db
         database = openOrCreateDatabase("database2.sql", MODE_PRIVATE, null);
 
+        //GET SCORE FROM PREVIOUS RUN IF ANY
+        int score = getIntent().getIntExtra("score" , 0);
+        points = score;
 
 
 
@@ -122,7 +125,7 @@ public class Third_Screen extends AppCompatActivity {
 
         //Initialize the discvoered letters counter.
         foundLetters  = 0;
-        points = 0;
+        //points = 0;
         numGuesses = 0;
 
         //--- Initial animation setup
@@ -132,6 +135,7 @@ public class Third_Screen extends AppCompatActivity {
         hintText = findViewById(R.id.txt_category);
         hintText.setText(hint);
         txtPoints = findViewById(R.id.txt_scores);
+        txtPoints.setText(Integer.valueOf(points).toString());
     }
 
     //POINTS HANDLING
@@ -195,7 +199,12 @@ public class Third_Screen extends AppCompatActivity {
     //CLICK EVENTS(NON-LETTERS)
     //TODO: after restart of game the name pf player is lost we need to change it
     public void onClickAgain(View view) {
+        String playerName = getIntent().getStringExtra("playerName");
+
         Intent intent = new Intent(this,Second_Screen.class);
+        intent.putExtra("playerName" , playerName);
+        intent.putExtra("score", points);
+
         startActivity(intent);
     }
 

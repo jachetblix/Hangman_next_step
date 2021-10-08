@@ -34,6 +34,7 @@ public class Second_Screen extends AppCompatActivity {
         setContentView(R.layout.second_activity);
 
         String playerName = getIntent().getStringExtra("playerName");
+        int score = getIntent().getIntExtra("score" , 0);
         TextView playerTe = findViewById(R.id.helloUser);
         playerTe.setText("hello " + playerName + " lets play");
         //Objects
@@ -43,6 +44,7 @@ public class Second_Screen extends AppCompatActivity {
         intent= new Intent(this, Third_Screen.class);
         //TODO localisation player name
         intent.putExtra("playerName", playerName);
+        intent.putExtra("score", score);
 
         txtViewChosen = findViewById(R.id.txt_level_chose);
         imgViewIcon = findViewById(R.id.anim_emoji);
