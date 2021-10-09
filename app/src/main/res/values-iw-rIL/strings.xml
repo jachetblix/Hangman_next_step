@@ -28,4 +28,5 @@
     <string name="txt_hard">קשה</string>
     <string name="txt_hello">"שלום    "</string>
     <string name="txt_game_start">"   נשחק "</string>
+    <string name="txt_words_movement">מילים של התנועה</string>
 </resources>

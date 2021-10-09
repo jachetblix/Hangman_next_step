@@ -52,12 +52,12 @@ public class Third_Screen extends AppCompatActivity {
 
 
         if (level.equals("Easy") || level.equals("קל")){
-            String[] easy = {"תופים","גיטרה","פסנטר","חתול","יונדאי","כלב","פורד","שברולט"};
+            String[] easy = {"תופים","לטוס","ללכת","לנסוע","גיטרה","פסנטר","חתול","קנציפר","יונדאי","כלב","פורד","שברולט"};
             Random ran = new Random();
             str = easy[ran.nextInt(easy.length)];
             if (str.equals("שברולט")|| str.equals("פורד")||str.equals("יונדאי"))
             {
-                 hint = getString(R.string.txt_cars);
+                hint = getString(R.string.txt_cars);
             }
             if (str.equals("נשר")|| str.equals("חתול")||str.equals("כלב"))
             {
@@ -67,12 +67,16 @@ public class Third_Screen extends AppCompatActivity {
             {
                 hint = getString(R.string.txt_instruments);
             }
+            if (str.equals("לטוס")|| str.equals("ללכת")||str.equals("לנסוע"))
+            {
+                hint = getString(R.string.txt_words_movement);
+            }
 
 
         }
         if (level.equals("Medium")|| level.equals("בינוני"))
         {
-            String[] medium = {"משולש","מצילה","קלרניט","יונה","שפן","תוכי","במוו","למבורגיני","פורש"};
+            String[] medium = {"משולש","מצילה","לעוף","לעלות","לקפוץ","קלרניט","יונה","שפן","תוכי","במוו","למבורגיני","פורש"};
             Random ran = new Random();
             str = medium[ran.nextInt(medium.length)];
             if (str.equals("במוו")|| str.equals("למבורגיני")||str.equals("פורש"))
@@ -87,11 +91,15 @@ public class Third_Screen extends AppCompatActivity {
             {
                 hint = getString(R.string.txt_instruments);
             }
+            if (str.equals("לעוף")|| str.equals("לעלות")||str.equals("לקפוץ"))
+            {
+                hint = getString(R.string.txt_words_movement);
+            }
 
         }
         if(level.equals("Hard")|| level.equals("קשה"))
         {
-            String[] hard = {"גונג","עוד","קלימבה","פיל","ינשוף","סוריקטה","ארמדילו","בוגאטי","קונינזג","טאטא"};
+            String[] hard = {"להסתובב","להתבדר","להכנס","גונג","עוד","קלימבה","פיל","ינשוף","סוריקטה","ארמדילו","בוגאטי","קונינזג","טאטא"};
             Random ran = new Random();
             str = hard[ran.nextInt(hard.length)];
             if (str.equals("בוגאטי")|| str.equals("קונינזג")||str.equals("טאטא"))
@@ -106,6 +114,12 @@ public class Third_Screen extends AppCompatActivity {
             {
                 hint = getString(R.string.txt_instruments);
             }
+            if (str.equals("להסתובב")|| str.equals("להתבדר")||str.equals("להכנס"))
+            {
+                hint = getString(R.string.txt_words_movement);
+            }
+
+
 
 
         }
